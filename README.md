@@ -70,5 +70,3 @@ GET|PUT|DELETE    /api/invoices/{id}
 GET|POST          /api/invoices/{id}/items
 GET|PUT|DELETE    /api/invoices/{invoice_id}/items/{id}
 ```
-
-
