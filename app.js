@@ -77,6 +77,42 @@ InvoiceItem = sequelize.define('invoice_items', {
 });
 
 sequelize.sync().then(function() {
+  // TODO - this should be deleted before completion
+  Invoice.create({
+    customer_id: 1,
+    discount: 0.0,
+    total: 100
+  });
+  Invoice.create({
+    customer_id: 1,
+    discount: 0.0,
+    total: 50
+  });
+  Invoice.create({
+    customer_id: 2,
+    discount: 0.0,
+    total: 100
+  });
+  InvoiceItem.create({
+    invoice_id: 1,
+    product_id: 1,
+    quantity: 1
+  });
+  InvoiceItem.create({
+    invoice_id: 1,
+    product_id: 2,
+    quantity: 2
+  });
+  InvoiceItem.create({
+    invoice_id: 2,
+    product_id: 2,
+    quantity: 1
+  });
+  InvoiceItem.create({
+    invoice_id: 3,
+    product_id: 3,
+    quantity: 1
+  });
   Customer.create({
     name: "Mark Benson",
     address: "353 Rochester St, Rialto FL 43250",

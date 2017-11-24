@@ -1,0 +1,10 @@
+<p *ngIf="invoiceItems">
+  Invoice # {{invoice.id}} | Customer ID: {{invoice.customer_id}} | Total: {{invoice.total | currency:'USD'}}
+  <!-- <app-product-item
+    *ngFor="let invoiceItem of invoiceItems"
+    [invoiceItem]="invoiceItem">
+  </app-product-item> -->
+</p>
+<!-- <th>{{invoice.id}}</th>
+<td>{{invoice.customer_id}}</td>
+<td>{{invoiceItems.length}}</td> -->
