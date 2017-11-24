@@ -8,6 +8,7 @@ import { InvoiceService } from './invoice.service';
 import { ProductService } from './product.service';
 import { InvoiceListComponent } from './invoice-list/invoice-list.component';
 import { InvoiceItemComponent } from './invoice-list/invoice-item/invoice-item.component';
+import { InvoiceFormComponent } from './invoice-list/invoice-form/invoice-form.component';
 import { ProductItemComponent } from './product-item/product-item.component';
 
 
@@ -16,6 +17,7 @@ import { ProductItemComponent } from './product-item/product-item.component';
     AppComponent,
     InvoiceListComponent,
     InvoiceItemComponent,
+    InvoiceFormComponent,
     ProductItemComponent
   ],
   imports: [

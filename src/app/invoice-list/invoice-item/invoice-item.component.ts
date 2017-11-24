@@ -1,6 +1,9 @@
+import { Component, OnInit, Input } from '@angular/core';
+
+import { Invoice } from '../../shared/invoice';
 import { ProductService } from './../../product.service';
 import { InvoiceService } from './../../invoice.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { InvoiceItem } from '../../shared/invoice-item';
 
 @Component({
   selector: 'app-invoice-item',
@@ -8,8 +11,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./invoice-item.component.css']
 })
 export class InvoiceItemComponent implements OnInit {
-  @Input() invoice;
-  invoiceItems;
+  @Input() invoice: Invoice;
+  invoiceItems: InvoiceItem[];
 
   constructor(
     private invoiceService: InvoiceService

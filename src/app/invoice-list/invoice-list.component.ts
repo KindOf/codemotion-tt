@@ -1,5 +1,7 @@
-import { InvoiceService } from './../invoice.service';
 import { Component, OnInit } from '@angular/core';
+
+import { Invoice } from '../shared/invoice';
+import { InvoiceService } from './../invoice.service';
 
 @Component({
   selector: 'app-invoice-list',
@@ -7,21 +9,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./invoice-list.component.css']
 })
 export class InvoiceListComponent implements OnInit {
-  invoices;
+  invoices: Invoice[];
   showModal = false;
 
   constructor(
     private invoiceService: InvoiceService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.invoiceService.getInvoices()
       .subscribe(invoices => {
         this.invoices = invoices;
       });
   }
 
-  toggleModal() {
+  toggleModal(): void {
     this.showModal = !this.showModal;
   }
 }
