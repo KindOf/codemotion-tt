@@ -10,7 +10,7 @@
 `npm install`
 
 ###### Run the node server
-`node app.js`
+`npm run build`
 
 ###### Viewing the application in your browser
 `http://localhost:8000`
