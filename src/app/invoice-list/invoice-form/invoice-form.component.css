@@ -1,0 +1,15 @@
+.panel {
+  margin-top: 25px;
+}
+
+#customer, #products, .input-group {
+  margin-bottom: 15px;
+}
+
+.discount-input {
+  max-width: 70px;
+}
+
+.modal-active {
+  display: block;
+}

@@ -1,1 +1,94 @@
-<h1>Invoice Form</h1>
+<div class="row">
+  <div class="col-sm-6">
+    <form [formGroup]="invoiceForm">
+      <label for="customer">Customer</label>
+      <select class="form-control" formControlName="customer" id="customer" required>
+        <option
+          *ngFor="let customer of customers"
+          [ngValue]="customer">
+          {{ customer.name }}
+        </option>
+      </select>
+      <button class="btn btn-primary" (click)="toggleModal('Customer')">Add new Customer</button>
+      <hr>
+      <ul>
+        <li *ngFor="let product of products">
+          {{product.name}} - {{product.price | currency: 'USD'}}
+          <button class="btn btn-primary btn-xs" (click)="addProduct(product)">Add</button>
+        </li>
+      </ul>
+      <button class="btn btn-primary" (click)="toggleModal('Product')">Add new Product</button>
+      <hr>
+      <label for="discount">Discount, %</label>
+      <div class="discount-input">
+        <input type="number" min="0" max="100" formControlName="discount" class="form-control" id="discount" />
+      </div>
+      <hr>
+    </form>
+  </div>
+  <div class="col-sm-6">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">New Invoice</h3>
+      </div>
+      <div class="panel-body">
+        <strong *ngIf="!invoiceForm.value.customer && !invoiceForm.value.products.length">Add Customer and Products to create an invoice</strong>
+        <p *ngIf="invoiceForm.value.customer"><strong>Customer:</strong> {{invoiceForm.value.customer.name}}</p>
+        <strong *ngIf="invoiceForm.value.products.length">Products:</strong>
+        <table class="table" *ngIf="invoiceForm.value.products.length">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let product of invoiceForm.value.products; let i = index">
+              <th scope="row">{{i + 1}}</th>
+              <td>{{product.name}}</td>
+              <td>{{product.price | currency: 'USD'}}</td>
+              <td>
+                <input
+                  type="number"
+                  class="form-control"
+                  (input)="updateQuantity(i, invoiceForm.value.invoiceItems[i])"
+                  name="qnt{{i}}"
+                  [(ngModel)]="invoiceForm.value.invoiceItems[i].quantity"
+                  min="1">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p *ngIf="invoiceForm.value.discount"><strong>Discount:</strong> {{invoiceForm.value.discount}}%</p>
+        <div class="panel-footer">
+          <h3>Total: {{invoiceForm.value.total | currency: 'USD'}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="showAlert" class="alert alert-success" role="alert">Invoice saved!</div>
+
+<div
+  class="modal fade bs-example-modal-lg"
+  [ngClass]="{'in': showModal, 'modal-active': showModal}"
+  tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="toggleModal()"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">{{modal}}</h4>
+      </div>
+      <div class="modal-body">
+        <app-product-form *ngIf="modal === 'Product'"></app-product-form>
+        <app-customer-form *ngIf="modal === 'Customer'"></app-customer-form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" (click)="toggleModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { InvoiceService } from './invoice.service';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -10,7 +8,6 @@ import { InvoiceService } from './invoice.service';
 export class AppComponent implements OnInit {
 
   constructor(
-    private invoiceService: InvoiceService
   ) {}
 
   ngOnInit() {
